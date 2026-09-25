@@ -16,7 +16,7 @@ logger = logging.getLogger("kanban-evidence-backend")
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="IBM Bob 2.0 — Auto Kanban Evidence Board",
+    title="Bob Task Management — Auto Kanban Evidence Board",
     description="Automated real-time Kanban board powered by GitHub webhooks & IBM watsonx.ai with PR/commit evidence tracking and OpenRouter fallback.",
     version="1.0.0"
 )

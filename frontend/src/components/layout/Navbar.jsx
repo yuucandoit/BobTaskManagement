@@ -28,7 +28,7 @@ export default function Navbar({ onRefresh, onToggleChat, isChatOpen = false }) 
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-sm font-bold text-white tracking-tight">Auto Evidence Kanban</h1>
+            <h1 className="text-sm font-bold text-white tracking-tight">Bob Task Management</h1>
             <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-blue-900/40 text-blue-300 border border-blue-700/50">
               watsonx.ai
             </span>
