@@ -18,7 +18,32 @@ def simulate_pr_opened(req: Optional[DemoSimulatePRRequest] = None, db: Session 
     Card is auto-created and placed in 'In Progress' with PR Evidence link.
     """
     if req is None:
-        req = DemoSimulatePRRequest()
+        # Check if PR 42 is already Done; if so, dynamically create next PR
+        existing_42 = db.query(CardModel).filter(
+            CardModel.repo_name == "ibm-bob/smart-tracker",
+            CardModel.pr_number == 42
+        ).first()
+
+        if existing_42 and existing_42.status == "Done":
+            from sqlalchemy import func
+            max_pr = db.query(func.max(CardModel.pr_number)).filter(
+                CardModel.repo_name == "ibm-bob/smart-tracker"
+            ).scalar() or 42
+            next_num = max_pr + 1
+            demo_variants = [
+                ("feat(ai): watsonx.ai auto-tagging and risk analysis engine", "Implements automated risk estimation and tag generation using IBM Granite LLM.", "feat/watsonx-tagging"),
+                ("fix(cache): resolve race condition in distributed session lock", "Replaces optimistic token lock with Redis redlock consensus.", "fix/redis-lock"),
+                ("feat(metrics): add real-time sprint velocity charts", "Exposes telemetry endpoint for team sprint progress and burndown metrics.", "feat/metrics-chart"),
+            ]
+            picked = demo_variants[(next_num - 43) % len(demo_variants)]
+            req = DemoSimulatePRRequest(
+                pr_number=next_num,
+                title=picked[0],
+                description=picked[1],
+                branch_name=picked[2]
+            )
+        else:
+            req = DemoSimulatePRRequest()
 
     pr_data = {
         "action": "opened",
@@ -85,15 +110,33 @@ def simulate_pr_merged(
     Pitch Demo Trigger: Simulates developer merging PR to main.
     The card dynamically moves from 'In Progress' to 'Done'.
     """
+    # Smart merge: find active in-progress PR card if 42 already done
+    target_card = db.query(CardModel).filter(
+        CardModel.repo_name == repo_name,
+        CardModel.pr_number == pr_number
+    ).first()
+
+    if not target_card or target_card.status != "In Progress":
+        active_pr_card = db.query(CardModel).filter(
+            CardModel.status == "In Progress",
+            CardModel.pr_number.isnot(None)
+        ).order_by(CardModel.updated_at.desc()).first()
+        if active_pr_card and active_pr_card.pr_number:
+            pr_number = active_pr_card.pr_number
+            target_card = active_pr_card
+
+    pr_title = target_card.title if target_card else "Add IBM Cloud SSO & OAuth2 session verification"
+    branch_name = target_card.branch_name if target_card else "feat/ibm-sso-auth"
+
     pr_data = {
         "action": "closed",
         "pr_number": pr_number,
-        "pr_title": "feat(auth): Add IBM Cloud SSO & OAuth2 session verification",
+        "pr_title": pr_title,
         "pr_body": "All reviews passed, merging to main branch.",
         "pr_url": f"https://github.com/{repo_name}/pull/{pr_number}",
         "merged": True,
         "state": "closed",
-        "branch_name": "feat/ibm-sso-auth",
+        "branch_name": branch_name,
         "commit_sha": "f9e8d7c6b5a4321",
         "author_username": "firza-dev",
         "author_avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=firza-dev",

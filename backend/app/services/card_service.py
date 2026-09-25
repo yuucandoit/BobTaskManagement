@@ -283,6 +283,23 @@ def process_github_pr_event(db: Session, pr_data: Dict[str, Any]) -> CardModel:
 
         return card
 
+    # 3. EXISTING PR REOPENED OR OPENED AGAIN
+    if action in ["opened", "reopened"]:
+        card.status = "In Progress"
+        card.pr_state = "open"
+        card.completed_at = None
+        card.updated_at = datetime.utcnow()
+        db.commit()
+        db.refresh(card)
+        add_activity_log(
+            db,
+            card_id=card.id,
+            action="status_changed",
+            actor=author_username,
+            details=f"PR #{pr_number} reopened/active. Moved to 'In Progress'."
+        )
+        return card
+
     # 3. EXISTING PR UPDATED (e.g. new commits pushed / synchronize)
     card.diff_loc = diff_loc
     is_creep, ratio = check_scope_creep(diff_loc, card.estimation_hours or 2.0)
