@@ -2,7 +2,7 @@ import re
 import json
 import logging
 from typing import List, Dict, Any
-from app.core.ai.watsonx_client import watsonx_client
+from app.core.ai.ai_gateway import ai_generate_text
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ Respond ONLY with a JSON array of task objects matching this schema:
 ]
 """
 
-    llm_output = watsonx_client.generate_text(prompt)
+    llm_output = ai_generate_text(prompt)
     if llm_output:
         try:
             match = re.search(r'\[.*\]', llm_output, re.DOTALL)

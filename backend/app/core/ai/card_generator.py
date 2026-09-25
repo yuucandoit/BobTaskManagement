@@ -2,7 +2,7 @@ import re
 import json
 import logging
 from typing import Dict, Any, Optional
-from app.core.ai.watsonx_client import watsonx_client
+from app.core.ai.ai_gateway import ai_generate_text
 from app.core.scoring.estimation import calculate_estimation_from_diff
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def generate_card_from_pr(
     diff_loc: int = 0
 ) -> Dict[str, Any]:
     """
-    Uses IBM watsonx.ai (or resilient fallback) to transform a PR into a structured Kanban card.
+    Uses IBM watsonx.ai (with OpenRouter & deterministic fallbacks) to transform a PR into a structured Kanban card.
     """
     body_clean = (pr_body or "").strip()
     prompt = f"""You are an expert AI Agile Scrum Master and Tech Lead.
@@ -40,7 +40,7 @@ Respond ONLY with a valid JSON object matching this schema:
 }}
 """
 
-    llm_output = watsonx_client.generate_text(prompt)
+    llm_output = ai_generate_text(prompt)
     if llm_output:
         try:
             match = re.search(r'\{.*\}', llm_output, re.DOTALL)

@@ -2,7 +2,7 @@ import re
 import json
 import logging
 from typing import Dict, Any, Optional
-from app.core.ai.watsonx_client import watsonx_client
+from app.core.ai.ai_gateway import ai_generate_text
 from app.models.schemas import ChatCardExtraction
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ Extract the task details and respond strictly with a valid JSON object matching 
 }}
 """
 
-    llm_output = watsonx_client.generate_text(prompt)
+    llm_output = ai_generate_text(prompt)
     if llm_output:
         try:
             match = re.search(r'\{.*\}', llm_output, re.DOTALL)

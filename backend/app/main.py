@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.db.database import Base, engine
 from app.api.v1 import api_v1_router
-from app.core.ai.watsonx_client import watsonx_client
+from app.core.ai import watsonx_client, openrouter_client, get_active_ai_provider
 
 logging.basicConfig(
     level=logging.INFO,
@@ -17,7 +17,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="IBM Bob 2.0 — Auto Kanban Evidence Board",
-    description="Automated real-time Kanban board powered by GitHub webhooks & IBM watsonx.ai with PR/commit evidence tracking.",
+    description="Automated real-time Kanban board powered by GitHub webhooks & IBM watsonx.ai with PR/commit evidence tracking and OpenRouter fallback.",
     version="1.0.0"
 )
 
@@ -39,7 +39,9 @@ def root():
         "project": "IBM Bob 2.0 Kanban Evidence Board",
         "status": "online",
         "version": "1.0.0",
+        "ai_provider": get_active_ai_provider(),
         "watsonx_active": watsonx_client.is_available(),
+        "openrouter_active": openrouter_client.is_available(),
         "docs_url": "/docs"
     }
 
@@ -48,7 +50,10 @@ def health_check():
     return {
         "status": "healthy",
         "environment": settings.APP_ENV,
-        "watsonx_configured": watsonx_client.is_available()
+        "ai_provider": get_active_ai_provider(),
+        "watsonx_configured": watsonx_client.is_available(),
+        "openrouter_configured": openrouter_client.is_available(),
+        "openrouter_model": settings.OPENROUTER_MODEL
     }
 
 if __name__ == "__main__":

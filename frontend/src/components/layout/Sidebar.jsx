@@ -65,15 +65,19 @@ export default function Sidebar({ activeTab, onTabChange }) {
       {/* Footer Info */}
       <div className="pt-4 border-t border-[#30363d] flex flex-col gap-2">
         <div className="flex items-center justify-between text-[11px] text-slate-400">
-          <span>watsonx.ai Engine:</span>
+          <span>watsonx.ai (Tier 1):</span>
           <span className="text-emerald-400 font-mono flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Ready
+            Active
           </span>
         </div>
         <div className="flex items-center justify-between text-[11px] text-slate-400">
+          <span>OpenRouter (Tier 2):</span>
+          <span className="text-blue-400 font-mono">Free Fallback</span>
+        </div>
+        <div className="flex items-center justify-between text-[11px] text-slate-400">
           <span>GitHub Listener:</span>
-          <span className="text-blue-400 font-mono">Listening</span>
+          <span className="text-purple-400 font-mono">Listening</span>
         </div>
       </div>
     </aside>

@@ -13,12 +13,17 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str = "sqlite:///./kanban_evidence.db"
 
-    # IBM watsonx.ai
+    # IBM watsonx.ai (Tier 1 AI)
     WATSONX_API_KEY: str = ""
     WATSONX_PROJECT_ID: str = ""
     WATSONX_URL: str = "https://us-south.ml.cloud.ibm.com"
     WATSONX_MODEL_ID: str = "ibm/granite-13b-chat-v2"
     WATSONX_USE_FALLBACK_ON_ERROR: bool = True
+
+    # OpenRouter Fallback (Tier 2 AI - Free Models)
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_MODEL: str = "meta-llama/llama-3.3-70b-instruct:free"
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
 
     # GitHub
     GITHUB_WEBHOOK_SECRET: str = ""
