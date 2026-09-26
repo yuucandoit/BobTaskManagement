@@ -67,31 +67,37 @@ export default function OnboardingPage({ onReady }) {
           </div>
         </div>
 
-        {/* Step 2: Target Repository Connection */}
+        {/* Step 2: Multi-Repo & Target Connection */}
         <div className="p-5 bg-[#161b22] border border-[#30363d] rounded-2xl flex flex-col gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-mono text-xs font-bold">
               2
             </div>
-            <h3 className="text-sm font-semibold text-white">Repository Target</h3>
+            <h3 className="text-sm font-semibold text-white">Multi-Repo & Org Connection</h3>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Pastikan nama repository target sesuai dengan workspace sprint yang sedang aktif:
+            Bob Task Management mendukung **multiple repository** sekaligus:
           </p>
 
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-medium text-slate-300">Nama Repositori GitHub:</label>
-            <input
-              type="text"
-              value={repoName}
-              onChange={(e) => setRepoName(e.target.value)}
-              className="bg-[#0d1117] border border-[#30363d] rounded-xl px-3.5 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-blue-500"
-            />
+          <div className="flex flex-col gap-2 text-xs">
+            <div className="p-2.5 bg-[#0d1117] rounded-xl border border-[#30363d]">
+              <span className="font-semibold text-blue-400 block mb-0.5">Opsi A — Multiple Repositori:</span>
+              <p className="text-[11px] text-slate-400">
+                Tempel URL webhook yang sama di Repo 1 (misal <code>auth-service</code>) dan Repo 2 (misal <code>frontend-app</code>). Keduanya akan otomatis muncul di filter board.
+              </p>
+            </div>
+
+            <div className="p-2.5 bg-[#0d1117] rounded-xl border border-[#30363d]">
+              <span className="font-semibold text-purple-400 block mb-0.5">Opsi B — GitHub Organization Webhook:</span>
+              <p className="text-[11px] text-slate-400">
+                Buka <strong>Organization Settings → Webhooks</strong>. Seluruh repo di dalam organisasi akan otomatis terhubung tanpa perlu setup satu per satu!
+              </p>
+            </div>
           </div>
 
           <div className="p-3 bg-emerald-950/30 border border-emerald-900/50 rounded-xl flex items-center gap-2 text-xs text-emerald-300 mt-auto">
             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Listener aktif! Siap menerima event PR dan commit secara real-time.</span>
+            <span>Multi-Repo Ready: Setiap kartu mencatat <code>repo_name</code> secara otomatis.</span>
           </div>
         </div>
       </div>

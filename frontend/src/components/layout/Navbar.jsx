@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { GitPullRequest, GitMerge, AlertTriangle, Sparkles, Database, RotateCcw, MessageSquare, ChevronDown } from 'lucide-react';
+import { GitPullRequest, GitMerge, AlertTriangle, Sparkles, Database, RotateCcw, MessageSquare, ChevronDown, GitBranch } from 'lucide-react';
 import { demoApi } from '../../services/api';
 
-export default function Navbar({ onRefresh, onToggleChat, isChatOpen = false }) {
+export default function Navbar({
+  onRefresh,
+  onToggleChat,
+  isChatOpen = false,
+  selectedRepo = 'all',
+  onSelectRepo = null,
+  availableRepos = []
+}) {
   const [demoLoading, setDemoLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -33,7 +40,20 @@ export default function Navbar({ onRefresh, onToggleChat, isChatOpen = false }) 
               watsonx.ai
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-mono">repo: ibm-bob/smart-tracker</p>
+          <div className="flex items-center gap-1.5 mt-0.5">
+            <GitBranch className="w-3 h-3 text-slate-400 shrink-0" />
+            <select
+              value={selectedRepo}
+              onChange={(e) => onSelectRepo && onSelectRepo(e.target.value)}
+              className="bg-[#0d1117] border border-[#30363d] rounded text-[11px] font-mono text-slate-300 px-1.5 py-0.5 focus:outline-none focus:border-blue-500 cursor-pointer"
+              title="Filter papan berdasarkan repositori target"
+            >
+              <option value="all">All Repositories (Unified)</option>
+              {availableRepos.map((r) => (
+                <option key={r} value={r}>{r}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 

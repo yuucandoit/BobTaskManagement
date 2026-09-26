@@ -41,6 +41,14 @@ export default function TaskCard({ card, onClick }) {
           >
             {card.priority}
           </span>
+          {card.repo_name && (
+            <span
+              className="px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-[#0d1117] border border-[#30363d] truncate max-w-[130px]"
+              title={`Repository: ${card.repo_name}`}
+            >
+              {card.repo_name.split('/')[1] || card.repo_name}
+            </span>
+          )}
         </div>
 
         {/* Story points */}

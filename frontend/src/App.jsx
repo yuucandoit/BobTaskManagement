@@ -10,22 +10,28 @@ import { useChat } from './hooks/useChat';
 export default function App() {
   const [activeTab, setActiveTab] = useState('board');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedRepo, setSelectedRepo] = useState('all');
 
-  // Core board hook with 3s polling for real-time demo synchronization
-  const { board, loading, error, refreshBoard } = useBoard(3000);
+  // Core board hook with multi-repo filter and 3s polling
+  const { board, loading, error, refreshBoard } = useBoard(selectedRepo, 3000);
 
   // Chat hook: when card created via chat, trigger board refresh
   const chatProps = useChat((newCard) => {
     refreshBoard();
   });
 
+  const availableRepos = board?.stats?.available_repos || [];
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0d1117] text-slate-100 font-sans">
-      {/* Top Navbar */}
+      {/* Top Navbar with multi-repo switcher */}
       <Navbar
         onRefresh={refreshBoard}
         onToggleChat={() => setIsChatOpen(!isChatOpen)}
         isChatOpen={isChatOpen}
+        selectedRepo={selectedRepo}
+        onSelectRepo={setSelectedRepo}
+        availableRepos={availableRepos}
       />
 
       {/* Main Body with Sidebar & Content */}

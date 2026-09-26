@@ -8,8 +8,9 @@ const api = axios.create({
 });
 
 export const boardApi = {
-  getBoard: async () => {
-    const res = await api.get('/board');
+  getBoard: async (repo = null) => {
+    const params = repo && repo !== 'all' ? { repo } : {};
+    const res = await api.get('/board', { params });
     return res.data;
   },
 };

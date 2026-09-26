@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { boardApi } from '../services/api';
 
-export function useBoard(pollIntervalMs = 3000) {
+export function useBoard(selectedRepo = 'all', pollIntervalMs = 3000) {
   const [board, setBoard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ export function useBoard(pollIntervalMs = 3000) {
   const fetchBoard = useCallback(async (isSilent = false) => {
     if (!isSilent) setLoading(true);
     try {
-      const data = await boardApi.getBoard();
+      const data = await boardApi.getBoard(selectedRepo);
       setBoard(data);
       setError(null);
       setLastRefreshed(new Date());
@@ -20,7 +20,7 @@ export function useBoard(pollIntervalMs = 3000) {
     } finally {
       if (!isSilent) setLoading(false);
     }
-  }, []);
+  }, [selectedRepo]);
 
   useEffect(() => {
     fetchBoard(false);
@@ -32,7 +32,7 @@ export function useBoard(pollIntervalMs = 3000) {
       }, pollIntervalMs);
       return () => clearInterval(interval);
     }
-  }, [fetchBoard, pollIntervalMs]);
+  }, [fetchBoard, pollIntervalMs, selectedRepo]);
 
   return {
     board,
