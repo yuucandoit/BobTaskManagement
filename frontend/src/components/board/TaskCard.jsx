@@ -88,13 +88,13 @@ export default function TaskCard({ card, onClick }) {
       {card.evidences && card.evidences.length > 0 && (
         <div className="pt-2 border-t border-[#21262d] flex items-center gap-2 flex-wrap">
           <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
-            Bukti:
+            Evidence:
           </span>
           {card.evidences.slice(0, 2).map((ev) => (
             <EvidenceLink key={ev.id} evidence={ev} isMini={true} />
           ))}
           {card.evidences.length > 2 && (
-            <span className="text-[11px] text-slate-400">+{card.evidences.length - 2} lagi</span>
+            <span className="text-[11px] text-slate-400">+{card.evidences.length - 2} more</span>
           )}
         </div>
       )}

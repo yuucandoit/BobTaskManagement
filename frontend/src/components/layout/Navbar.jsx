@@ -46,7 +46,7 @@ export default function Navbar({
               value={selectedRepo}
               onChange={(e) => onSelectRepo && onSelectRepo(e.target.value)}
               className="bg-[#0d1117] border border-[#30363d] rounded text-[11px] font-mono text-slate-300 px-1.5 py-0.5 focus:outline-none focus:border-blue-500 cursor-pointer"
-              title="Filter papan berdasarkan repositori target"
+              title="Filter board by target repository"
             >
               <option value="all">All Repositories (Unified)</option>
               {availableRepos.map((r) => (
@@ -66,7 +66,7 @@ export default function Navbar({
             onClick={() => handleDemoAction(() => demoApi.simulatePROpened(), 'Simulate PR Open')}
             disabled={demoLoading}
             className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-emerald-300 hover:bg-emerald-950/60 border border-transparent hover:border-emerald-800/50 transition-all"
-            title="Skenario 2: Developer buka PR baru → Auto-create kartu In Progress"
+            title="Scenario 2: Developer opens a new PR → Auto-create In Progress card"
           >
             <GitPullRequest className="w-3.5 h-3.5 text-emerald-400" />
             <span>PR Open</span>
@@ -76,27 +76,27 @@ export default function Navbar({
             onClick={() => handleDemoAction(() => demoApi.simulatePRMerged(42), 'Simulate PR Merged')}
             disabled={demoLoading}
             className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-purple-300 hover:bg-purple-950/60 border border-transparent hover:border-purple-800/50 transition-all"
-            title="Skenario 2: Developer merge PR → Kartu otomatis pindah ke Done!"
+            title="Scenario 2: Developer merges PR → Card automatically moves to Done"
           >
             <GitMerge className="w-3.5 h-3.5 text-purple-400" />
             <span>PR Merge</span>
           </button>
 
           <button
-            onClick={() => handleDemoAction(() => demoApi.simulateStaleAlarm(), 'Trigger Stale Alarm')}
+            onClick={() => handleDemoAction(() => demoApi.simulateStaleAlarm(), 'Trigger Stale Alert')}
             disabled={demoLoading}
             className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-red-300 hover:bg-red-950/60 border border-transparent hover:border-red-800/50 transition-all"
-            title="Bonus #6: Alarm PR diam >2 hari"
+            title="Bonus #6: Stale PR alert (>2 days without activity)"
           >
             <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-            <span>Alarm PR Diam</span>
+            <span>Stale PR Alert</span>
           </button>
 
           <button
             onClick={() => handleDemoAction(() => demoApi.seedSampleData(), 'Seed Demo Data')}
             disabled={demoLoading}
             className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-slate-300 hover:bg-[#21262d] transition-all"
-            title="Populate contoh data sprint lengkap"
+            title="Populate complete sample sprint data"
           >
             <Database className="w-3.5 h-3.5 text-blue-400" />
             <span>Seed</span>
@@ -106,7 +106,7 @@ export default function Navbar({
             onClick={() => handleDemoAction(() => demoApi.resetBoard(), 'Reset Board')}
             disabled={demoLoading}
             className="p-1 text-xs rounded-lg text-slate-400 hover:text-rose-400 hover:bg-[#21262d] transition-all"
-            title="Reset board ke kosong"
+            title="Reset board to empty"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>

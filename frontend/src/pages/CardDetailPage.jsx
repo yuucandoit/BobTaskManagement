@@ -24,7 +24,7 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
   };
 
   const handleDelete = async () => {
-    if (window.confirm('Yakin ingin menghapus kartu ini?')) {
+    if (window.confirm('Are you sure you want to delete this card?')) {
       try {
         await cardsApi.delete(card.id);
         if (onCardUpdated) onCardUpdated(null);
@@ -58,7 +58,7 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
           className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium text-rose-400 hover:bg-rose-950/40 border border-transparent hover:border-rose-800/40 transition-colors"
         >
           <Trash2 className="w-3.5 h-3.5" />
-          <span>Hapus Kartu</span>
+          <span>Delete Card</span>
         </button>
       </div>
 
@@ -77,10 +77,10 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
       {/* Description */}
       <div>
         <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-          Deskripsi & Ringkasan AI
+          Description & AI Summary
         </h4>
         <p className="text-sm text-slate-200 leading-relaxed bg-[#0d1117] p-3.5 rounded-xl border border-[#30363d]">
-          {card.description || 'Tidak ada deskripsi detail.'}
+          {card.description || 'No detailed description.'}
         </p>
       </div>
 
@@ -99,21 +99,21 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
         </div>
 
         <div className="p-3 bg-[#0d1117] rounded-xl border border-[#30363d]">
-          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Estimasi</span>
+          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Estimation</span>
           <p className="text-xs font-semibold text-slate-200 mt-1 font-mono">
-            {card.estimation_hours} jam ({card.story_points} SP)
+            {card.estimation_hours} hrs ({card.story_points} SP)
           </p>
         </div>
 
         <div className="p-3 bg-[#0d1117] rounded-xl border border-[#30363d]">
-          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Diff Kode</span>
+          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Code Diff</span>
           <p className="text-xs font-semibold text-slate-200 mt-1 font-mono">
             {card.diff_loc || 0} LOC
           </p>
         </div>
 
         <div className="p-3 bg-[#0d1117] rounded-xl border border-[#30363d]">
-          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Asal Kartu</span>
+          <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Card Source</span>
           <p className="text-xs font-semibold text-slate-200 mt-1 font-mono uppercase">
             {card.origin || 'github_pr'}
           </p>
@@ -124,13 +124,13 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
       <div>
         <div className="flex items-center justify-between mb-2">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-            Tautan Bukti ({card.evidences?.length || 0})
+            Evidence Links ({card.evidences?.length || 0})
           </h4>
         </div>
         <div className="flex flex-col gap-2.5">
           {(!card.evidences || card.evidences.length === 0) ? (
             <p className="text-xs text-slate-500 italic p-3 bg-[#0d1117] rounded-xl border border-[#30363d]">
-              Belum ada bukti yang terhubung (PR / commit).
+              No linked evidence yet (PR / commit).
             </p>
           ) : (
             card.evidences.map((ev) => (
@@ -144,11 +144,11 @@ export default function CardDetailPage({ card, onClose, onCardUpdated }) {
       <div>
         <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
           <History className="w-3.5 h-3.5" />
-          <span>Riwayat Aktivitas & Jejak Audit</span>
+          <span>Activity Log & Audit Trail</span>
         </h4>
         <div className="flex flex-col gap-2 bg-[#0d1117] p-3 rounded-xl border border-[#30363d] max-h-48 overflow-y-auto">
           {(!card.activities || card.activities.length === 0) ? (
-            <p className="text-xs text-slate-500 italic">Belum ada riwayat aktivitas tercatat.</p>
+            <p className="text-xs text-slate-500 italic">No activity recorded yet.</p>
           ) : (
             card.activities.map((act) => (
               <div key={act.id} className="text-xs flex items-start justify-between gap-3 border-b border-[#21262d] pb-2 last:border-none last:pb-0">

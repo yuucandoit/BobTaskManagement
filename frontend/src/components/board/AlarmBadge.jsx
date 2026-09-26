@@ -6,10 +6,10 @@ export default function AlarmBadge({ type, detail, days = null, ratio = null }) 
     return (
       <div
         className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium bg-red-950/60 text-red-400 border border-red-800/80 animate-pulse shadow-sm"
-        title={`PR tidak ada aktivitas selama ${days || '>2'} hari`}
+        title={`PR has been inactive for ${days || '>2'} days`}
       >
         <Clock className="w-3 h-3 text-red-400 shrink-0" />
-        <span>PR Diam {days ? `${days} hari` : '>2 hari'}</span>
+        <span>Inactive {days ? `${days}d` : '>2d'}</span>
       </div>
     );
   }
@@ -18,7 +18,7 @@ export default function AlarmBadge({ type, detail, days = null, ratio = null }) 
     return (
       <div
         className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium bg-amber-950/60 text-amber-300 border border-amber-800/80"
-        title={`Diff size ${ratio ? `${ratio}x` : '>3x'} dari baseline estimasi awal`}
+        title={`Code diff size is ${ratio ? `${ratio}x` : '>3x'} larger than initial estimate`}
       >
         <TrendingUp className="w-3 h-3 text-amber-400 shrink-0" />
         <span>Scope Creep {ratio ? `(${ratio}x)` : ''}</span>

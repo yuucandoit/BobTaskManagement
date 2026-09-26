@@ -20,13 +20,13 @@ export default function OnboardingPage({ onReady }) {
       <div>
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 mb-1">
           <GitBranch className="w-4 h-4" />
-          <span>Skenario 1 — Setup Awal Repositori</span>
+          <span>Scenario 1 — Repository Setup</span>
         </div>
         <h2 className="text-2xl font-bold text-white tracking-tight">
-          Hubungkan GitHub Repository
+          Connect GitHub Repository
         </h2>
         <p className="text-sm text-slate-400 mt-1">
-          Hubungkan repo proyek Anda agar setiap Pull Request & branch baru langsung otomatis disintesis menjadi kartu tugas Kanban.
+          Connect your project repository so every Pull Request and branch is automatically synthesized into a Kanban task card.
         </p>
       </div>
 
@@ -38,10 +38,10 @@ export default function OnboardingPage({ onReady }) {
             <div className="w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-mono text-xs font-bold">
               1
             </div>
-            <h3 className="text-sm font-semibold text-white">Salin Webhook Payload URL</h3>
+            <h3 className="text-sm font-semibold text-white">Copy Webhook Payload URL</h3>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Buka menu <strong>Settings → Webhooks → Add Webhook</strong> di repository GitHub Anda, lalu tempel URL berikut:
+            Go to <strong>Settings → Webhooks → Add Webhook</strong> in your GitHub repository, then paste this URL:
           </p>
 
           <div className="flex items-center gap-2 bg-[#0d1117] p-2.5 rounded-xl border border-[#30363d]">
@@ -54,16 +54,16 @@ export default function OnboardingPage({ onReady }) {
             <button
               onClick={copyWebhook}
               className="p-1.5 rounded-lg bg-[#21262d] text-slate-300 hover:text-white hover:bg-[#30363d] transition-colors"
-              title="Salin URL"
+              title="Copy URL"
             >
               {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             </button>
           </div>
 
           <div className="flex flex-col gap-1.5 text-xs text-slate-400 bg-[#0d1117]/60 p-3 rounded-xl border border-[#21262d]">
-            <span className="font-semibold text-slate-300">Pengaturan Webhook GitHub:</span>
+            <span className="font-semibold text-slate-300">GitHub Webhook Configuration:</span>
             <span>• Content type: <code>application/json</code></span>
-            <span>• Events: Pilih <code>Pull requests</code> dan <code>Pushes</code></span>
+            <span>• Events: Select <code>Pull requests</code> and <code>Pushes</code></span>
           </div>
         </div>
 
@@ -76,28 +76,28 @@ export default function OnboardingPage({ onReady }) {
             <h3 className="text-sm font-semibold text-white">Multi-Repo & Org Connection</h3>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Bob Task Management mendukung **multiple repository** sekaligus:
+            Bob Task Management supports multiple repositories concurrently:
           </p>
 
           <div className="flex flex-col gap-2 text-xs">
             <div className="p-2.5 bg-[#0d1117] rounded-xl border border-[#30363d]">
-              <span className="font-semibold text-blue-400 block mb-0.5">Opsi A — Multiple Repositori:</span>
+              <span className="font-semibold text-blue-400 block mb-0.5">Option A — Multiple Repositories:</span>
               <p className="text-[11px] text-slate-400">
-                Tempel URL webhook yang sama di Repo 1 (misal <code>auth-service</code>) dan Repo 2 (misal <code>frontend-app</code>). Keduanya akan otomatis muncul di filter board.
+                Paste the same webhook URL in Repo 1 (e.g. <code>auth-service</code>) and Repo 2 (e.g. <code>frontend-app</code>). Both will automatically appear in the board filter.
               </p>
             </div>
 
             <div className="p-2.5 bg-[#0d1117] rounded-xl border border-[#30363d]">
-              <span className="font-semibold text-purple-400 block mb-0.5">Opsi B — GitHub Organization Webhook:</span>
+              <span className="font-semibold text-purple-400 block mb-0.5">Option B — GitHub Organization Webhook:</span>
               <p className="text-[11px] text-slate-400">
-                Buka <strong>Organization Settings → Webhooks</strong>. Seluruh repo di dalam organisasi akan otomatis terhubung tanpa perlu setup satu per satu!
+                Go to <strong>Organization Settings → Webhooks</strong>. All repositories within the organization will be linked automatically!
               </p>
             </div>
           </div>
 
           <div className="p-3 bg-emerald-950/30 border border-emerald-900/50 rounded-xl flex items-center gap-2 text-xs text-emerald-300 mt-auto">
             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Multi-Repo Ready: Setiap kartu mencatat <code>repo_name</code> secara otomatis.</span>
+            <span>Multi-Repo Ready: Every card records <code>repo_name</code> automatically.</span>
           </div>
         </div>
       </div>
@@ -107,12 +107,12 @@ export default function OnboardingPage({ onReady }) {
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-xs text-slate-300 font-medium">
-            Status: Listener Standby & Siap Demo
+            Status: Webhook Listener Ready
           </span>
         </div>
 
         <Button onClick={onReady} icon={PlayCircle}>
-          Buka Kanban Board Sekarang
+          Open Kanban Board
         </Button>
       </div>
     </div>

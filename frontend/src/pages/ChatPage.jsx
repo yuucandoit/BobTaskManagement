@@ -11,18 +11,18 @@ export default function ChatPage({ chatProps, onGoToBoard }) {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 mb-1">
             <Sparkles className="w-4 h-4" />
-            <span>Skenario 3 — AI Natural Language Task Creation</span>
+            <span>Scenario 3 — AI Natural Language Task Creation</span>
           </div>
           <h2 className="text-2xl font-bold text-white tracking-tight">
             AI Scrum Assistant
           </h2>
           <p className="text-sm text-slate-400 mt-1">
-            Buat kartu secara instan hanya dengan mengetik bahasa manusia sehari-hari via IBM watsonx.ai.
+            Instantly create cards by describing tasks in natural language powered by IBM watsonx.ai.
           </p>
         </div>
 
         <Button variant="secondary" onClick={onGoToBoard} icon={ArrowRight}>
-          Lihat Board
+          View Board
         </Button>
       </div>
 

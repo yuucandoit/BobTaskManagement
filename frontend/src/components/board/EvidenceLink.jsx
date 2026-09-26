@@ -61,7 +61,7 @@ export default function EvidenceLink({ evidence, isMini = false }) {
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-              {evidence.evidence_type} bukti
+              {evidence.evidence_type} evidence
             </span>
             {evidence.reference_id && (
               <span className="px-1.5 py-0.5 bg-[#21262d] rounded text-[11px] font-mono text-slate-300">
@@ -94,7 +94,7 @@ export default function EvidenceLink({ evidence, isMini = false }) {
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 p-1.5 rounded text-slate-400 hover:text-white hover:bg-[#21262d] transition-colors"
-          title="Buka bukti di GitHub"
+          title="Open proof on GitHub"
         >
           <ExternalLink className="w-4 h-4" />
         </a>

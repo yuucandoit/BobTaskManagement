@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Loader({ size = 'md', text = 'Memuat data...' }) {
+export default function Loader({ size = 'md', text = 'Loading...' }) {
   const sizeClasses = {
     sm: 'w-4 h-4 border-2',
     md: 'w-8 h-8 border-3',

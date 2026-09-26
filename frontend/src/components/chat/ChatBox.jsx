@@ -7,9 +7,9 @@ export default function ChatBox({ messages, sending, onSendMessage, onClear }) {
   const messagesEndRef = useRef(null);
 
   const quickPrompts = [
-    'buat kartu: refactor auth module, assign ke Firza, deadline Jumat',
-    'buat kartu: fix memory leak in worker pool, assign ke Budi, priority urgent',
-    'buat kartu: buat dokumentasi API watsonx endpoint',
+    'create card: refactor auth module, assign to Alex, deadline Friday',
+    'create card: fix memory leak in worker pool, priority urgent',
+    'create card: write API documentation for endpoints',
   ];
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function ChatBox({ messages, sending, onSendMessage, onClear }) {
           <button
             onClick={onClear}
             className="p-1 rounded text-slate-400 hover:text-rose-400 hover:bg-[#21262d] transition-colors"
-            title="Bersihkan chat"
+            title="Clear chat"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -63,7 +63,7 @@ export default function ChatBox({ messages, sending, onSendMessage, onClear }) {
         {sending && (
           <div className="flex items-center gap-2 text-xs text-blue-400 font-mono animate-pulse">
             <Sparkles className="w-3.5 h-3.5 animate-spin" />
-            <span>watsonx.ai sedang menganalisis prompt & membuat kartu...</span>
+            <span>watsonx.ai is analyzing prompt & generating card...</span>
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -71,7 +71,7 @@ export default function ChatBox({ messages, sending, onSendMessage, onClear }) {
 
       {/* Quick Prompts */}
       <div className="px-3 py-2 border-t border-[#30363d] bg-[#0d1117]/40 flex items-center gap-1.5 overflow-x-auto text-[11px]">
-        <span className="text-slate-500 font-medium shrink-0">Contoh:</span>
+        <span className="text-slate-500 font-medium shrink-0">Examples:</span>
         {quickPrompts.map((p, idx) => (
           <button
             key={idx}
@@ -89,7 +89,7 @@ export default function ChatBox({ messages, sending, onSendMessage, onClear }) {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ketik tugas manual, misal: buat kartu: refactor auth module..."
+          placeholder="Type task instruction, e.g. create card: refactor auth module..."
           disabled={sending}
           className="flex-1 bg-[#161b22] border border-[#30363d] rounded-xl px-3.5 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
         />

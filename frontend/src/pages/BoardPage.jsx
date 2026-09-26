@@ -57,7 +57,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
   };
 
   if (loading && !board) {
-    return <Loader size="lg" text="Menghubungkan ke IBM watsonx.ai & Kanban board..." />;
+    return <Loader size="lg" text="Connecting to IBM watsonx.ai & Kanban board..." />;
   }
 
   if (error && !board) {
@@ -65,7 +65,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
       <div className="p-8 text-center flex flex-col items-center justify-center gap-4">
         <p className="text-rose-400 font-semibold">{error}</p>
         <Button onClick={refreshBoard} icon={RefreshCw}>
-          Coba Lagi
+          Try Again
         </Button>
       </div>
     );
@@ -77,11 +77,11 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
           <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-            <span>Sprint Board Real-Time</span>
+            <span>Real-Time Sprint Board</span>
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
-            Auto-sync dengan GitHub Pull Requests & Commit Evidence.
+            Auto-synced with GitHub Pull Requests & Commit Evidence.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
             size="sm"
             onClick={refreshBoard}
             icon={RefreshCw}
-            title="Refresh manual data board"
+            title="Manually refresh board data"
           >
             Sync
           </Button>
@@ -102,7 +102,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
             onClick={() => setIsManualModalOpen(true)}
             icon={Plus}
           >
-            Tambah Kartu
+            Add Card
           </Button>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
       <Modal
         isOpen={isDetailOpen}
         onClose={() => setIsDetailOpen(false)}
-        title={selectedCard ? `Detail Tugas: ${selectedCard.title}` : 'Detail Kartu'}
+        title={selectedCard ? `Task Details: ${selectedCard.title}` : 'Card Details'}
         maxWidth="max-w-2xl"
       >
         <CardDetailPage
@@ -148,29 +148,29 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
       <Modal
         isOpen={isManualModalOpen}
         onClose={() => setIsManualModalOpen(false)}
-        title="Buat Kartu Baru (Manual)"
+        title="Create New Card (Manual)"
         maxWidth="max-w-lg"
       >
         <form onSubmit={handleManualCreate} className="flex flex-col gap-4 text-xs">
           <div className="flex flex-col gap-1.5">
-            <label className="font-medium text-slate-300">Judul Tugas *</label>
+            <label className="font-medium text-slate-300">Task Title *</label>
             <input
               type="text"
               required
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              placeholder="Contoh: Refactor auth middleware"
+              placeholder="e.g. Refactor auth middleware"
               className="bg-[#0d1117] border border-[#30363d] rounded-xl px-3.5 py-2 text-slate-100 focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="font-medium text-slate-300">Deskripsi</label>
+            <label className="font-medium text-slate-300">Description</label>
             <textarea
               rows={3}
               value={newDesc}
               onChange={(e) => setNewDesc(e.target.value)}
-              placeholder="Rincian scope pekerjaan..."
+              placeholder="Task scope and details..."
               className="bg-[#0d1117] border border-[#30363d] rounded-xl px-3.5 py-2 text-slate-100 focus:outline-none focus:border-blue-500 resize-none"
             />
           </div>
@@ -182,13 +182,13 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
                 type="text"
                 value={newAssignee}
                 onChange={(e) => setNewAssignee(e.target.value)}
-                placeholder="Nama developer"
+                placeholder="Developer name"
                 className="bg-[#0d1117] border border-[#30363d] rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-medium text-slate-300">Kolom</label>
+              <label className="font-medium text-slate-300">Column</label>
               <select
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
@@ -203,7 +203,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
 
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1.5">
-              <label className="font-medium text-slate-300">Prioritas</label>
+              <label className="font-medium text-slate-300">Priority</label>
               <select
                 value={newPriority}
                 onChange={(e) => setNewPriority(e.target.value)}
@@ -217,7 +217,7 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-medium text-slate-300">Tipe Task</label>
+              <label className="font-medium text-slate-300">Task Type</label>
               <select
                 value={newType}
                 onChange={(e) => setNewType(e.target.value)}
@@ -234,10 +234,10 @@ export default function BoardPage({ board, loading, error, refreshBoard, chatPro
 
           <div className="flex justify-end gap-2 pt-2 border-t border-[#30363d]">
             <Button variant="ghost" onClick={() => setIsManualModalOpen(false)}>
-              Batal
+              Cancel
             </Button>
             <Button type="submit" disabled={creatingManual}>
-              {creatingManual ? 'Menyimpan...' : 'Simpan Kartu'}
+              {creatingManual ? 'Saving...' : 'Save Card'}
             </Button>
           </div>
         </form>
