@@ -13,7 +13,7 @@ export default function KanbanBoard({ board, onCardClick, onAddCard, onRefresh, 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-3 flex items-center justify-between">
           <div>
-            <span className="text-xs text-slate-400 font-medium">Total Kartu</span>
+            <span className="text-xs text-slate-400 font-medium">Total Cards</span>
             <p className="text-xl font-bold text-slate-100 font-mono mt-0.5">{total_cards}</p>
           </div>
           <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center">
@@ -23,7 +23,7 @@ export default function KanbanBoard({ board, onCardClick, onAddCard, onRefresh, 
 
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-3 flex items-center justify-between">
           <div>
-            <span className="text-xs text-slate-400 font-medium">Bukti Terverifikasi</span>
+            <span className="text-xs text-slate-400 font-medium">Verified Evidence</span>
             <p className="text-xl font-bold text-emerald-400 font-mono mt-0.5">{stats?.total_evidences || 0}</p>
           </div>
           <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
@@ -33,7 +33,7 @@ export default function KanbanBoard({ board, onCardClick, onAddCard, onRefresh, 
 
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-3 flex items-center justify-between">
           <div>
-            <span className="text-xs text-slate-400 font-medium">Alarm PR Diam</span>
+            <span className="text-xs text-slate-400 font-medium">Stale PR Alerts</span>
             <p className="text-xl font-bold text-red-400 font-mono mt-0.5">{stats?.stale_pr_alerts || 0}</p>
           </div>
           <div className="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center">
@@ -43,7 +43,7 @@ export default function KanbanBoard({ board, onCardClick, onAddCard, onRefresh, 
 
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-3 flex items-center justify-between">
           <div>
-            <span className="text-xs text-slate-400 font-medium">Scope Creep</span>
+            <span className="text-xs text-slate-400 font-medium">Scope Creep Alerts</span>
             <p className="text-xl font-bold text-amber-400 font-mono mt-0.5">{stats?.scope_creep_alerts || 0}</p>
           </div>
           <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
@@ -53,7 +53,7 @@ export default function KanbanBoard({ board, onCardClick, onAddCard, onRefresh, 
 
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-3 flex items-center justify-between col-span-2 md:col-span-1">
           <div>
-            <span className="text-xs text-slate-400 font-medium">Developer Aktif</span>
+            <span className="text-xs text-slate-400 font-medium">Active Developers</span>
             <p className="text-xl font-bold text-purple-400 font-mono mt-0.5">{stats?.active_devs || 0}</p>
           </div>
           <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">

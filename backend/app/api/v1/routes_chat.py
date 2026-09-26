@@ -35,11 +35,11 @@ def handle_chat_instruction(req: ChatRequest, db: Session = Depends(get_db)):
     # Construct user-friendly conversational reply
     assignee_str = f" to **{extracted.assignee_name}**" if extracted.assignee_name else ""
     reply = (
-        f"✅ Kartu **\"{extracted.title}\"** berhasil dibuat dan ditaruh di kolom **{created_card.status}**!\n"
-        f"- Tipe: `{extracted.task_type}`\n"
-        f"- Prioritas: `{extracted.priority}`\n"
-        f"- Estimasi: `{extracted.estimation_hours} jam`\n"
-        f"- Assignee: `{extracted.assignee_name or 'Belum di-assign'}`"
+        f"✅ Card **\"{extracted.title}\"** created in column **{created_card.status}**!\n"
+        f"- Type: `{extracted.task_type}`\n"
+        f"- Priority: `{extracted.priority}`\n"
+        f"- Estimation: `{extracted.estimation_hours} hrs`\n"
+        f"- Assignee: `{extracted.assignee_name or 'Unassigned'}`"
     )
 
     return ChatResponse(

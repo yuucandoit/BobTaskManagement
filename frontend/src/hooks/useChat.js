@@ -6,7 +6,7 @@ export function useChat(onCardCreated = null) {
     {
       id: 'welcome',
       sender: 'ai',
-      text: 'Halo PM! Ketik instruksi bebas untuk membuat kartu baru. Contoh:\n*"buat kartu: refactor auth module, assign ke Firza, deadline Jumat"*',
+      text: 'Hello! Describe any task to generate a new card. For example:\n*"create card: refactor auth module, assign to Alex, deadline Friday"*',
       timestamp: new Date(),
     },
   ]);
@@ -44,7 +44,7 @@ export function useChat(onCardCreated = null) {
       const errorMsg = {
         id: (Date.now() + 1).toString(),
         sender: 'ai',
-        text: '❌ Gagal memproses instruksi. Pastikan backend aktif.',
+        text: '❌ Failed to process instruction. Ensure the backend is reachable.',
         isError: true,
         timestamp: new Date(),
       };
@@ -59,7 +59,7 @@ export function useChat(onCardCreated = null) {
       {
         id: 'welcome',
         sender: 'ai',
-        text: 'Chat dibersihkan. Silakan masukkan perintah tugas baru.',
+        text: 'Chat cleared. Enter a new task instruction anytime.',
         timestamp: new Date(),
       },
     ]);

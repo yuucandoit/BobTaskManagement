@@ -46,7 +46,7 @@ export default function KanbanColumn({ columnId, title, count, cards = [], onCar
           <button
             onClick={onAddCard}
             className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-[#21262d] transition-colors"
-            title="Tambah kartu baru manual / chat"
+            title="Add card manually or via AI chat"
           >
             <Plus className="w-4 h-4" />
           </button>
@@ -58,7 +58,7 @@ export default function KanbanColumn({ columnId, title, count, cards = [], onCar
         {cards.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center py-16 text-center text-slate-500">
             <Icon className={`w-8 h-8 mb-2 opacity-30 ${config.iconColor}`} />
-            <p className="text-xs font-medium">Belum ada kartu di {title}</p>
+            <p className="text-xs font-medium">No cards in {title}</p>
           </div>
         ) : (
           cards.map((card) => (
