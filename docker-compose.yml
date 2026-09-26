@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bob-task-management-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - DATABASE_URL=sqlite:///./kanban_evidence.db
+      - CORS_ORIGINS=["http://localhost:5173","http://127.0.0.1:5173","http://localhost:80","http://localhost:3000","http://localhost"]
+      - WATSONX_API_KEY=${WATSONX_API_KEY:-}
+      - WATSONX_PROJECT_ID=${WATSONX_PROJECT_ID:-}
+      - WATSONX_URL=${WATSONX_URL:-https://us-south.ml.cloud.ibm.com}
+      - WATSONX_MODEL_ID=${WATSONX_MODEL_ID:-ibm/granite-13b-chat-v2}
+      - WATSONX_USE_FALLBACK_ON_ERROR=${WATSONX_USE_FALLBACK_ON_ERROR:-true}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-meta-llama/llama-3.3-70b-instruct:free}
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET:-}
+      - GITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN:-}
+    volumes:
+      - backend_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bob-task-management-frontend
+    ports:
+      - "5173:80"
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_data:
