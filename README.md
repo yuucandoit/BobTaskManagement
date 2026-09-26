@@ -37,7 +37,7 @@ Every single card on the board includes **verifiable proof (*Evidence Links*)** 
 | **4** | **Chat-Based Task Creation** | Natural language interface for PMs (e.g., *"create card: refactor auth module, assign to Firza, deadline Friday"*). |
 | **5** | **Real-Time Kanban Dashboard** | Responsive 3-column view (*To Do*, *In Progress*, *Done*) built with React and Tailwind CSS. |
 
-### 2. Bonus & Extended Features
+### 2. Bonus & Extended Features (Not Ready Yet)
 | # | Feature | Description |
 |---|---|---|
 | **6** | **Stale PR Alert (> 2 Days)** | Visual blinking alert badge indicating that a PR in progress has had no activity for over 48 hours. |
