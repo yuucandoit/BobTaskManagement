@@ -37,13 +37,13 @@ async def handle_webhook_payload(
     payload = {}
 
     try:
-        if "application/x-www-form-urlencoded" in content_type or body_str.startswith("payload="):
-            if body_str.startswith("payload="):
-                raw_json = urllib.parse.unquote_plus(body_str[8:])
+        if "application/x-www-form-urlencoded" in content_type or "payload=" in body_str:
+            form_data = urllib.parse.parse_qs(body_str)
+            if "payload" in form_data:
+                raw_json = form_data["payload"][0]
+                payload = json.loads(raw_json)
             else:
-                form_data = urllib.parse.parse_qs(body_str)
-                raw_json = form_data.get("payload", ["{}"])[0]
-            payload = json.loads(raw_json)
+                payload = json.loads(body_str) if body_str else {}
         else:
             payload = json.loads(body_str) if body_str else {}
     except Exception as err:
