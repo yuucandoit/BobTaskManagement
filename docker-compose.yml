@@ -5,13 +5,13 @@ services:
       dockerfile: Dockerfile
     container_name: bob-task-management-backend
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       - APP_ENV=production
       - APP_HOST=0.0.0.0
       - APP_PORT=8000
       - DATABASE_URL=sqlite:///./kanban_evidence.db
-      - CORS_ORIGINS=["http://localhost:5173","http://127.0.0.1:5173","http://localhost:80","http://localhost:3000","http://localhost"]
+      - CORS_ORIGINS=["http://localhost:5173","http://127.0.0.1:5173","http://localhost:8000","http://localhost:8080","http://localhost"]
       - WATSONX_API_KEY=${WATSONX_API_KEY:-}
       - WATSONX_PROJECT_ID=${WATSONX_PROJECT_ID:-}
       - WATSONX_URL=${WATSONX_URL:-https://us-south.ml.cloud.ibm.com}
@@ -31,8 +31,7 @@ services:
       dockerfile: Dockerfile
     container_name: bob-task-management-frontend
     ports:
-      - "5173:80"
-      - "8080:80"
+      - "8000:80"
     depends_on:
       - backend
     restart: unless-stopped
